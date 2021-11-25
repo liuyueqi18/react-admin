@@ -1,0 +1,21 @@
+.layout {
+  height: 100vh;
+  overflow: scroll;
+}
+.sider {
+  background: #001529;
+}
+.header {
+  background: #fff;
+}
+.content {
+  max-height: 100%;
+  overflow: scroll;
+  padding: 16px 16px 0 16px;
+  border: 16px solid #f0f2f5;
+  box-sizing: border-box;
+  background: #fff;
+}
+.footer {
+  background: #fff;
+}
