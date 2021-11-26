@@ -19,6 +19,9 @@
 }
 .header {
   background: #fff;
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
 }
 .content {
   max-height: 100%;

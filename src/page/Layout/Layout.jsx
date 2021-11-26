@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import styles from "../../style/App.module.css";
 import routesList from "../../routes/router";
-import { Layout, Menu } from "antd";
+import { Breadcrumb, Layout, Menu } from "antd";
 import SiderLogo from "./SiderLogo";
 
 const { Header, Content, Sider } = Layout;
@@ -23,8 +23,10 @@ function LayoutComponent() {
   }, []);
   const [state, setState] = useState({
     path: "",
+    breadcrumbKeys: [],
   });
   let defaultOpenKeys = [];
+  let breadcrumbKeys = [];
   const loaction = useLocation();
   const nvigate = useNavigate();
 
@@ -32,7 +34,7 @@ function LayoutComponent() {
     getPathRoute(routesList, loaction.pathname);
     setState({
       path: loaction.pathname,
-      defaultOpenKeys: defaultOpenKeys.reverse(),
+      breadcrumbKeys: breadcrumbKeys.reverse(),
     });
   };
 
@@ -42,11 +44,13 @@ function LayoutComponent() {
         let endRecursiveLoop = getPathRoute(tree[index].children, path);
         if (endRecursiveLoop) {
           defaultOpenKeys.push(tree[index].path);
+          breadcrumbKeys.push(tree[index]);
           return true;
         }
       }
       if (tree[index].path === path) {
         defaultOpenKeys.push(tree[index].path);
+        breadcrumbKeys.push(tree[index]);
         return true;
       }
     }
@@ -98,9 +102,11 @@ function LayoutComponent() {
     });
   };
   const onSelect = (value) => {
+    breadcrumbKeys = [];
+    getPathRoute(routesList, loaction.pathname);
     setState({
-      ...state,
       path: value.selectedKeys[0],
+      breadcrumbKeys: breadcrumbKeys.reverse(),
     });
   };
 
@@ -119,7 +125,15 @@ function LayoutComponent() {
         </Menu>
       </Sider>
       <Layout>
-        <Header className={styles.header}>头部</Header>
+        <Header className={styles.header}>
+          <Breadcrumb>
+            {state.breadcrumbKeys.map((item, index) => {
+              return (
+                <Breadcrumb.Item key={index}>{item.title}</Breadcrumb.Item>
+              );
+            })}
+          </Breadcrumb>
+        </Header>
         <Content className={styles.content}>
           <Routes exact>{renderElementPage(routesList)}</Routes>
         </Content>
