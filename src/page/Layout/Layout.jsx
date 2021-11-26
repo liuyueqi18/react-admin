@@ -17,18 +17,38 @@ function LayoutComponent() {
   useEffect(() => {
     handlerMenu();
     return () => {
-      //
+      // end
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const [state, setState] = useState({
     path: "",
-    defaultOpenKeys: [],
   });
+  let defaultOpenKeys = [];
   const loaction = useLocation();
   const nvigate = useNavigate();
+
   const handlerMenu = () => {
-    setState({ path: loaction.pathname });
+    getPathRoute(routesList, loaction.pathname);
+    setState({
+      path: loaction.pathname,
+      defaultOpenKeys: defaultOpenKeys.reverse(),
+    });
+  };
+
+  const getPathRoute = (tree, path) => {
+    for (let index = 0; index < tree.length; index++) {
+      if (tree[index].children) {
+        let endRecursiveLoop = getPathRoute(tree[index].children, path);
+        if (endRecursiveLoop) {
+          defaultOpenKeys.push(tree[index].path);
+          return true;
+        }
+      }
+      if (tree[index].path === path) {
+        defaultOpenKeys.push(tree[index].path);
+        return true;
+      }
+    }
   };
 
   const handlerMenuItem = (value) => {
@@ -78,9 +98,9 @@ function LayoutComponent() {
   };
   const onSelect = (value) => {
     setState({
+      ...state,
       path: value.selectedKeys[0],
     });
-    console.log("value :>> ", value);
   };
 
   return (
@@ -91,7 +111,7 @@ function LayoutComponent() {
           mode="inline"
           onSelect={onSelect}
           selectedKeys={[state.path]}
-          defaultOpenKeys={state.defaultOpenKeys}
+          defaultOpenKeys={defaultOpenKeys}
         >
           {renderMenu(routesList)}
         </Menu>
