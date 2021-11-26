@@ -1,0 +1,16 @@
+/* login */
+.login {
+  background: #001529;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f2f5f5;
+}
+.loginContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+  border: 1px solid #f3f5f5;
+}

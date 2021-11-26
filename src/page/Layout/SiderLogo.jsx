@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "../../style/App.module.css";
+import styles from "../../styles/App.module.css";
 import logo from "../../image/logo.png";
 
 export default function SiderLogo() {

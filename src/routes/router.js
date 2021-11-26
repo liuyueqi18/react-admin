@@ -1,3 +1,4 @@
+import Login from "../page/Login/Login";
 import Home from "../page/Home/Home";
 import Menu11 from "../page/Page/Menu11";
 import Menu12 from "../page/Page/Menu12";
@@ -9,6 +10,12 @@ const routes = [
     component: Home,
     isPage: true,
     requiresAuth: true,
+  },
+  {
+    path: "/login",
+    component: Login,
+    isPage: true,
+    requiresAuth: false,
   },
   {
     path: "/home",

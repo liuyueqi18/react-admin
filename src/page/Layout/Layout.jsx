@@ -6,7 +6,7 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
-import styles from "../../style/App.module.css";
+import styles from "../../styles/App.module.css";
 import routesList from "../../routes/router";
 import { Breadcrumb, Layout, Menu } from "antd";
 import SiderLogo from "./SiderLogo";

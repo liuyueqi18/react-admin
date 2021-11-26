@@ -1,5 +1,5 @@
 import React from "react";
-import style from "../../style/NotFound.module.css";
+import style from "../../styles/NotFound.module.css";
 import NotFoundImage from "../../image/404.png";
 import { Button } from "antd";
 import { useNavigate } from "react-router-dom";
