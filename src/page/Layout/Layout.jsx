@@ -10,6 +10,7 @@ import styles from "../../style/App.module.css";
 import routesList from "../../routes/router";
 import { Breadcrumb, Layout, Menu } from "antd";
 import SiderLogo from "./SiderLogo";
+import * as Icon from "@ant-design/icons";
 
 const { Header, Content, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -64,16 +65,41 @@ function LayoutComponent() {
     return list.map((item) => {
       if (item.children?.length) {
         return (
-          <SubMenu key={item.path} title={item.title}>
+          <SubMenu
+            key={item.path}
+            title={
+              <div>
+                {item.icon
+                  ? React.createElement(Icon[item.icon], {
+                      style: {
+                        fontSize: "16px",
+                        color: state.path === item.path ? "#fff" : "#08c",
+                      },
+                    })
+                  : ""}
+                <span>{item.title}</span>
+              </div>
+            }
+          >
             {renderMenu(item.children)}
           </SubMenu>
         );
       } else {
         return (
           <Menu.Item key={item.path} onClick={() => handlerMenuItem(item)}>
-            {/* <Link to={item.path}> */}
-            <span>{item.title}</span>
-            {/* </Link> */}
+            {
+              <div>
+                {item.icon
+                  ? React.createElement(Icon[item.icon], {
+                      style: {
+                        fontSize: "16px",
+                        color: state.path === item.path ? "#fff" : "#08c",
+                      },
+                    })
+                  : ""}
+                <span>{item.title}</span>
+              </div>
+            }
           </Menu.Item>
         );
       }

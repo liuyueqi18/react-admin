@@ -15,10 +15,12 @@ const routes = [
     title: "首页",
     component: Home,
     requiresAuth: true,
+    icon: "HomeOutlined",
   },
   {
     path: "/menu",
     title: "路由嵌套",
+    icon: "SwitcherOutlined",
     children: [
       {
         path: "/menu/menu1",
