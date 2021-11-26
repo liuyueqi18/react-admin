@@ -9,6 +9,7 @@ import {
 import styles from "../../style/App.module.css";
 import routesList from "../../routes/router";
 import { Layout, Menu } from "antd";
+import SiderLogo from "./SiderLogo";
 
 const { Header, Content, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -106,6 +107,7 @@ function LayoutComponent() {
   return (
     <Layout className={styles.layout}>
       <Sider className={styles.sider}>
+        <SiderLogo></SiderLogo>
         <Menu
           theme="dark"
           mode="inline"

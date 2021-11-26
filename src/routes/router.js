@@ -1,8 +1,7 @@
 import Home from "../page/Home/Home";
-import Page111 from "../page/Page/Page1_1_1";
-import Page112 from "../page/Page/Page1_1_2";
-import Page12 from "../page/Page/Page1_2";
-import Page2 from "../page/Page/Page2";
+import Menu11 from "../page/Page/Menu11";
+import Menu12 from "../page/Page/Menu12";
+import Menu2 from "../page/Page/Menu2";
 import NotFound from "../page/NotFound/index";
 const routes = [
   {
@@ -13,46 +12,40 @@ const routes = [
   },
   {
     path: "/home",
-    title: "Home",
+    title: "首页",
     component: Home,
     requiresAuth: true,
   },
   {
-    path: "/page1",
-    title: "Page1",
+    path: "/menu",
+    title: "路由嵌套",
     children: [
       {
-        path: "/page1/page11",
-        title: "Page1_1",
+        path: "/menu/menu1",
+        title: "菜单1",
         requiresAuth: true,
         children: [
           {
-            path: "/page1/page11/page111",
-            component: Page111,
-            title: "Page1_1_1",
+            path: "/menu/menu1/menu1-1",
+            component: Menu11,
+            title: "菜单1-1",
             requiresAuth: true,
           },
           {
-            path: "/page1/page11/page112",
-            component: Page112,
-            title: "Page1_1_2",
+            path: "/menu/menu1/menu1-2",
+            component: Menu12,
+            title: "菜单1-2",
             requiresAuth: true,
           },
         ],
       },
       {
-        path: "/page1/page12",
-        component: Page12,
-        title: "Page1_2",
+        path: "/menu/menu2",
+        component: Menu2,
+        title: "菜单2",
         requiresAuth: true,
       },
     ],
-  },
-  {
-    path: "/page2",
-    title: "page2",
-    component: Page2,
-    requiresAuth: true,
   },
   {
     path: "*",

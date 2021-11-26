@@ -2,6 +2,18 @@
   height: 100vh;
   overflow: scroll;
 }
+.siderLogoContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.65);
+  margin: 9px;
+  font-weight: 600;
+}
+.siderLogo {
+  margin-right: 10px;
+  width: 26px;
+}
 .sider {
   background: #001529;
 }
