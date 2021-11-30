@@ -11,6 +11,7 @@ import routesList from "../../routes/router";
 import { Breadcrumb, Layout, Menu } from "antd";
 import SiderLogo from "./SiderLogo";
 import * as Icon from "@ant-design/icons";
+import HeaderRight from "./HeaderRight";
 
 const { Header, Content, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -160,6 +161,7 @@ function LayoutComponent() {
               );
             })}
           </Breadcrumb>
+          <HeaderRight></HeaderRight>
         </Header>
         <Content className={styles.content}>
           <Routes exact>{renderElementPage(routesList)}</Routes>

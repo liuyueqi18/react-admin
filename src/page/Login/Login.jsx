@@ -4,6 +4,7 @@ import styles from "../../styles/Login.module.css";
 import { Form, Input, Button } from "antd";
 import { useNavigate } from "react-router-dom";
 import { userLogin } from "../../service/login";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
 
 export default function Login() {
   const nvigate = useNavigate();
@@ -18,30 +19,23 @@ export default function Login() {
   return (
     <div className={styles.login}>
       <div className={styles.loginContent}>
-        <Form
-          name="basic"
-          labelCol={{ span: 8 }}
-          wrapperCol={{ span: 16 }}
-          initialValues={{ remember: true }}
-          onFinish={onFinish}
-          autoComplete="off"
-        >
+        <Form name="basic" size="large" onFinish={onFinish}>
           <Form.Item
-            label="用户/邮箱"
             name="username"
             rules={[{ required: true, message: "请输入您的用户/邮箱" }]}
           >
-            <Input />
+            <Input prefix={<UserOutlined className="site-form-item-icon" />} />
           </Form.Item>
           <Form.Item
-            label="密码"
             name="password"
             rules={[{ required: true, message: "请输入您的密码" }]}
           >
-            <Input.Password />
+            <Input.Password
+              prefix={<LockOutlined className="site-form-item-icon" />}
+            />
           </Form.Item>
-          <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-            <Button type="primary" htmlType="submit">
+          <Form.Item>
+            <Button block type="primary" htmlType="submit">
               提交
             </Button>
           </Form.Item>

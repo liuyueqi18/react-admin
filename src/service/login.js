@@ -1,5 +1,6 @@
 import AV from "leancloud-storage";
 import { message } from "antd";
+
 AV.init({
   appId: "Q8A65T5W8qkMkbWI17g7vAu0-gzGzoHsz",
   appKey: "JXUCxIYpDrIF87LVpYlK9egD",
@@ -20,7 +21,7 @@ export function userLogin(username, password) {
       })
       .catch((error) => {
         reject(error);
-        message.warning(error.rawMessage || "登录失败");
+        message.error(error.rawMessage || "登录失败");
       });
   });
 }

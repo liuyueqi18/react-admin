@@ -5,12 +5,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f2f5f5;
+  background: #56ccf2; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to top,
+    #2f80ed,
+    #56ccf2
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to top,
+    #2f80ed,
+    #56ccf2
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .loginContent {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 60px;
-  border: 1px solid #f3f5f5;
+  padding: 60px 60px 40px 60px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  margin-bottom: 25vh;
 }

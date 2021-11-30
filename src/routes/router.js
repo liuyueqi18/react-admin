@@ -16,6 +16,7 @@ const routes = [
     component: Login,
     isPage: true,
     requiresAuth: false,
+    title: "登录",
   },
   {
     path: "/home",
