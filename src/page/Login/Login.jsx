@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 export default function Login() {
   const nvigate = useNavigate();
   const onFinish = (values) => {
-    console.log("Success:", values);
+    localStorage.setItem("RYMUSERID", "RYMUSERID");
     nvigate("/home");
   };
   const onFinishFailed = (errorInfo) => {
