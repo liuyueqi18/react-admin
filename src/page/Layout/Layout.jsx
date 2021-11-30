@@ -16,12 +16,6 @@ const { Header, Content, Sider } = Layout;
 const { SubMenu } = Menu;
 
 function LayoutComponent() {
-  useEffect(() => {
-    handlerMenu();
-    return () => {
-      // end
-    };
-  }, []);
   const [state, setState] = useState({
     path: "",
     breadcrumbKeys: [],
@@ -30,6 +24,13 @@ function LayoutComponent() {
   let breadcrumbKeys = [];
   const loaction = useLocation();
   const nvigate = useNavigate();
+
+  useEffect(() => {
+    handlerMenu();
+    return () => {
+      // end
+    };
+  }, [loaction.pathname]);
 
   const handlerMenu = () => {
     getPathRoute(routesList, loaction.pathname);
