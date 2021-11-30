@@ -3,16 +3,18 @@ import styles from "../../styles/Login.module.css";
 
 import { Form, Input, Button } from "antd";
 import { useNavigate } from "react-router-dom";
+import { userLogin } from "../../service/login";
 
 export default function Login() {
   const nvigate = useNavigate();
   const onFinish = (values) => {
-    localStorage.setItem("RYMUSERID", "RYMUSERID");
-    nvigate("/home");
+    userLogin(values.username, values.password).then((res) => {
+      localStorage.setItem("RYMUSERID", res.id);
+      localStorage.setItem("USERINFO", JSON.stringify(res.attributes));
+      nvigate("/home");
+    });
   };
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
+
   return (
     <div className={styles.login}>
       <div className={styles.loginContent}>
@@ -22,7 +24,6 @@ export default function Login() {
           wrapperCol={{ span: 16 }}
           initialValues={{ remember: true }}
           onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
           <Form.Item
