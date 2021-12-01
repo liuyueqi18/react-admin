@@ -1,19 +1,15 @@
-import Login from "../page/Login/Login";
-import Home from "../page/Home/Home";
-import Menu11 from "../page/Page/Menu11";
-import Menu12 from "../page/Page/Menu12";
-import Menu2 from "../page/Page/Menu2";
-import NotFound from "../page/NotFound/index";
+import React, { lazy } from "react";
+
 const routes = [
   {
     path: "/",
-    component: Home,
+    component: lazy(() => import("../page/Home/Home")),
     isPage: true,
     requiresAuth: true,
   },
   {
     path: "/login",
-    component: Login,
+    component: lazy(() => import("../page/Login/Login")),
     isPage: true,
     requiresAuth: false,
     title: "登录",
@@ -21,7 +17,7 @@ const routes = [
   {
     path: "/home",
     title: "首页",
-    component: Home,
+    component: lazy(() => import("../page/Home/Home")),
     requiresAuth: true,
     icon: "HomeOutlined",
   },
@@ -37,13 +33,13 @@ const routes = [
         children: [
           {
             path: "/menu/menu1/menu1-1",
-            component: Menu11,
+            component: lazy(() => import("../page/Page/Menu11")),
             title: "菜单1-1",
             requiresAuth: true,
           },
           {
             path: "/menu/menu1/menu1-2",
-            component: Menu12,
+            component: lazy(() => import("../page/Page/Menu12")),
             title: "菜单1-2",
             requiresAuth: true,
           },
@@ -51,15 +47,22 @@ const routes = [
       },
       {
         path: "/menu/menu2",
-        component: Menu2,
+        component: lazy(() => import("../page/Page/Menu2")),
         title: "菜单2",
         requiresAuth: true,
       },
     ],
   },
   {
+    path: "/about",
+    title: "首页",
+    component: lazy(() => import("../page/About/About")),
+    requiresAuth: true,
+    isPage: true,
+  },
+  {
     path: "*",
-    component: NotFound,
+    component: lazy(() => import("../page/NotFound/index")),
     requiresAuth: false,
     isPage: true,
   },

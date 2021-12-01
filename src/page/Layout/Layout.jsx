@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import {
   Route,
   Routes,
@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import styles from "../../styles/App.module.css";
 import routesList from "../../routes/router";
-import { Breadcrumb, Layout, Menu } from "antd";
+import { Breadcrumb, Layout, Menu, Skeleton } from "antd";
 import SiderLogo from "./SiderLogo";
 import * as Icon from "@ant-design/icons";
 import HeaderRight from "./HeaderRight";
@@ -138,6 +138,12 @@ function LayoutComponent() {
     });
   };
 
+  const renderLoading = (
+    <div>
+      <Skeleton active />
+    </div>
+  );
+
   return (
     <Layout className={styles.layout}>
       <Sider className={styles.sider}>
@@ -164,7 +170,9 @@ function LayoutComponent() {
           <HeaderRight></HeaderRight>
         </Header>
         <Content className={styles.content}>
-          <Routes exact>{renderElementPage(routesList)}</Routes>
+          <Suspense fallback={renderLoading} maxDuration={500}>
+            <Routes exact>{renderElementPage(routesList)}</Routes>
+          </Suspense>
         </Content>
         {/* <Footer className={styles.footer}>底部区域</Footer> */}
       </Layout>

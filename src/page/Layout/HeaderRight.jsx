@@ -25,7 +25,7 @@ function HeaderRight() {
   const handlerMenuItem = (type) => {
     console.log(`type`, type);
     if (type === 0) {
-      //
+      navigate("/about");
     } else if (type === 1) {
       navigate("/home");
     } else if (type === 2) {
