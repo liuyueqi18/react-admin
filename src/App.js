@@ -1,8 +1,10 @@
+import { ConfigProvider } from "antd";
 import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import LayoutComponent from "./page/Layout/Layout";
 import Login from "./page/Login/Login";
 import routesList from "./routes/router";
+import zhCN from "antd/lib/locale/zh_CN";
 
 function App() {
   const loaction = useLocation();
@@ -46,11 +48,13 @@ function App() {
 
   return (
     <div>
-      {loaction.pathname === "/login" ? (
-        <Login></Login>
-      ) : (
-        <LayoutComponent></LayoutComponent>
-      )}
+      <ConfigProvider locale={zhCN}>
+        {loaction.pathname === "/login" ? (
+          <Login></Login>
+        ) : (
+          <LayoutComponent></LayoutComponent>
+        )}
+      </ConfigProvider>
     </div>
   );
 }

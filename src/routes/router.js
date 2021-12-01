@@ -1,4 +1,4 @@
-import React, { lazy } from "react";
+import { lazy } from "react";
 
 const routes = [
   {
@@ -15,11 +15,31 @@ const routes = [
     title: "登录",
   },
   {
+    path: "/personalCenter",
+    title: "个人中心",
+    component: lazy(() => import("../page/PersonalCenter/PersonalCenter")),
+    requiresAuth: true,
+    isPage: true,
+  },
+  {
     path: "/home",
     title: "首页",
     component: lazy(() => import("../page/Home/Home")),
     requiresAuth: true,
     icon: "HomeOutlined",
+  },
+  {
+    path: "/table",
+    title: "表格",
+    icon: "DatabaseOutlined",
+    children: [
+      {
+        path: "/table/basic-table",
+        component: lazy(() => import("../page/Table/BasicTable")),
+        title: "基础表格",
+        requiresAuth: true,
+      },
+    ],
   },
   {
     path: "/menu",
@@ -52,13 +72,6 @@ const routes = [
         requiresAuth: true,
       },
     ],
-  },
-  {
-    path: "/personalCenter",
-    title: "首页",
-    component: lazy(() => import("../page/PersonalCenter/PersonalCenter")),
-    requiresAuth: true,
-    isPage: true,
   },
   {
     path: "*",
