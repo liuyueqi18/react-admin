@@ -11,7 +11,7 @@ function About() {
     });
   };
 
-  return <div>111</div>;
+  return <div>个人中心</div>;
 }
 
 export default About;

@@ -14,5 +14,5 @@ export default function Menu12() {
       setstate(false);
     };
   }, []);
-  return <div>{state.name}</div>;
+  return <div>渲染: {state.name}</div>;
 }

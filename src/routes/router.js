@@ -54,9 +54,9 @@ const routes = [
     ],
   },
   {
-    path: "/about",
+    path: "/personalCenter",
     title: "首页",
-    component: lazy(() => import("../page/About/About")),
+    component: lazy(() => import("../page/PersonalCenter/PersonalCenter")),
     requiresAuth: true,
     isPage: true,
   },
