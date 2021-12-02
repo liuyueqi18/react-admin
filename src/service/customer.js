@@ -9,7 +9,7 @@ AV.init({
 });
 
 /**
- * 获取列表
+ * 获取客户列表
  * @param {*} userId
  * @param {*} pageParams
  * @param {*} queryParams

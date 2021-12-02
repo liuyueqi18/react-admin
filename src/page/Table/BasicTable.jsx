@@ -140,7 +140,6 @@ function BasicTable() {
   };
   return (
     <div>
-      {state.total}
       <Table
         dataSource={state.list}
         columns={TabelColumns}
