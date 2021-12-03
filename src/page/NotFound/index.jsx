@@ -14,7 +14,7 @@ export default function NotFound() {
   return (
     <div className={style.content}>
       <img className={style.image} src={NotFoundImage} alt="" />
-      <Button onClick={goHome} type="primary">
+      <Button size="large" onClick={goHome} type="primary">
         回到首页
       </Button>
     </div>

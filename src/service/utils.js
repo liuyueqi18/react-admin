@@ -92,3 +92,55 @@ export const queryRegion = (code = "-1") => {
       });
   });
 };
+
+/**
+ * 验证用户名
+ * @param {*} username
+ * @returns
+ */
+export const CheckUserName = (username) => {
+  const str = username;
+  if (!str || str.length > 10 || str.length < 2) {
+    return false;
+  }
+  const reg = new RegExp(/[\u4e00-\u9fa5]/gm);
+  if (reg.test(str)) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+/**
+ * 验证密码
+ * @param {*} password
+ * @returns
+ */
+export const CheckPassWord = (password) => {
+  const str = password;
+  if (!str) {
+    return false;
+  } else {
+    return true;
+  }
+};
+
+/**
+ * 验证邮箱
+ * @param {*} email
+ * @returns
+ */
+export const CheckEmail = (email) => {
+  const str = email;
+  if (str === "") {
+    return false;
+  }
+  const reg = new RegExp(
+    "^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$"
+  );
+  if (reg.test(str)) {
+    return true;
+  } else {
+    return false;
+  }
+};

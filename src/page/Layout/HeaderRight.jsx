@@ -19,7 +19,7 @@ function HeaderRight() {
   const getUserInfo = () => {
     setstate({
       ...state,
-      username: JSON.parse(localStorage.getItem("USERINFO"))?.username,
+      username: JSON.parse(localStorage.getItem("USERINFO"))?.username ?? "",
     });
   };
   const handlerMenuItem = (type) => {

@@ -1,28 +1,102 @@
 /* login */
 .login {
-  background: #001529;
   height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #56ccf2; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to top,
-    #2f80ed,
-    #56ccf2
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to top,
-    #2f80ed,
-    #56ccf2
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #f5f5f5;
+  background-image: url("../image/login/bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-.loginContent {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 60px 60px 40px 60px;
-  /* background: rgba(255, 255, 255, 0.4); */
+.login_content {
+  background: rgba(255, 255, 255, 0.35);
+  position: fixed;
+  right: 10vw;
+  top: 20vh;
+  padding: 60px;
   border-radius: 10px;
   margin-bottom: 25vh;
+  box-shadow: 0px 0px 10px 2px #cedefb;
+}
+.input_centent {
+  position: relative;
+  margin-bottom: 44px;
+}
+.input_class {
+  width: 340px;
+  font-size: 16px;
+  border: 0 none;
+  background-color: rgba(0, 0, 0, 0);
+  padding: 8px 0 8px 42px;
+  border: 2px solid #cddefa;
+  border-radius: 4px;
+  color: #fff;
+}
+.input_class:focus {
+  border: 2px solid #cddefa;
+  border-radius: 4px;
+  outline: none;
+}
+.input_class:-webkit-autofill {
+  font-size: 16px;
+  -webkit-text-fill-color: #fff !important;
+  transition: background-color 10000s ease-in-out 0s;
+}
+.input_class::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 15px;
+}
+
+.input_icon {
+  width: 24px;
+  position: absolute;
+  left: 10px;
+  bottom: 11px;
+}
+.input_icon_right {
+  width: 22px;
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  cursor: pointer;
+}
+
+.tip_box {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 6px;
+  color: #bfd4f5;
+}
+.tips {
+  margin-left: 6px;
+  cursor: pointer;
+}
+
+.button_class {
+  z-index: 1;
+  color: white;
+  background: #2d86dd;
+  outline: none;
+  border: none;
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+/* .button_class:hover {
+  animation: jelly 0.5s;
+} */
+
+@keyframes jelly {
+  0%,
+  100% {
+    transform: scale(1, 1);
+  }
+  25%,
+  75% {
+    transform: scale(0.9, 1.1);
+  }
+  50% {
+    transform: scale(1.1, 0.9);
+  }
 }
