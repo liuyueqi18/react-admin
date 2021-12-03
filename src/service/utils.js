@@ -64,6 +64,14 @@ class RandomName {
 export let randomName = new RandomName();
 
 /**
+ * 获取随机手机号
+ * @returns
+ */
+export function getRandomMoble() {
+  return `1${randomNum(5, 9)}${parseInt(Math.random() * 1000000000)}`;
+}
+
+/**
  * 默认传-1 获取省份
  * 获取市/区/县 code 传 parentCode
  * @param {*} code

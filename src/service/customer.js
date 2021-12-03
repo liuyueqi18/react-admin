@@ -26,13 +26,13 @@ export function getCustomerListById(userId, pageParams, queryParams) {
   const globalQueryV4 = new AV.Query("Customer");
   const globalQueryV5 = new AV.Query("Customer");
   const globalQueryV6 = new AV.Query("Customer");
-  if (queryParams.global) {
-    globalQueryV1.contains("custName", queryParams.global);
-    globalQueryV2.contains("provinceName", queryParams.global);
-    globalQueryV3.contains("cityName", queryParams.global);
-    globalQueryV4.contains("areaName", queryParams.global);
-    globalQueryV5.contains("remark", queryParams.global);
-    globalQueryV6.contains("custPhone", queryParams.global);
+  if (queryParams.globalQuery) {
+    globalQueryV1.contains("custName", queryParams.globalQuery);
+    globalQueryV2.contains("provinceName", queryParams.globalQuery);
+    globalQueryV3.contains("cityName", queryParams.globalQuery);
+    globalQueryV4.contains("areaName", queryParams.globalQuery);
+    globalQueryV5.contains("remark", queryParams.globalQuery);
+    globalQueryV6.contains("custPhone", queryParams.globalQuery);
   }
   const CustomerQueryV1 = new AV.Query("Customer");
   const CustomerQueryV2 = new AV.Query("Customer");
@@ -115,6 +115,31 @@ export function followCustomer(custId, isFollow) {
       .save()
       .then((res) => {
         resolve(res);
+      })
+      .catch((error) => {
+        reject(error);
+        message.error(error.rawMessage || "错误");
+      });
+  });
+}
+
+/**
+ * 新增大批量用户
+ * @param {*} list
+ * @returns
+ */
+export function saveAllCustomer(list) {
+  return new Promise((resolve, reject) => {
+    const objects = list.map((item) => {
+      const object = new AV.Object("Customer");
+      for (var i in item) {
+        object.set(i, item[i]);
+      }
+      return object;
+    });
+    AV.Object.saveAll(objects)
+      .then(() => {
+        resolve();
       })
       .catch((error) => {
         reject(error);
