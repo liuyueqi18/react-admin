@@ -16,6 +16,9 @@ function BasicTableSearch(props) {
   const createdRandom = () => {
     props.createdRandom();
   };
+  const createPerson = ()=>{
+    props.createPerson()
+  }
   return (
     <div className={styles.search}>
       <Form
@@ -58,7 +61,7 @@ function BasicTableSearch(props) {
             <Form.Item>
               <div className={styles.search_button}>
                 <Space wrap>
-                  <Button type="primary" htmlType="button">
+                  <Button type="primary" htmlType="button" onClick={createPerson}>
                     创建人员
                   </Button>
                   <Popconfirm
