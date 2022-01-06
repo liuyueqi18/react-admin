@@ -24,7 +24,7 @@ function HeaderRight() {
   };
   const handlerMenuItem = (type) => {
     if (type === 0) {
-      navigate("/about");
+      navigate("/personalCenter");
     } else if (type === 1) {
       navigate("/home");
     } else if (type === 2) {

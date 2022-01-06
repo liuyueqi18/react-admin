@@ -105,6 +105,26 @@ export const queryRegion = (code = "-1") => {
 };
 
 /**
+ * 获取用户信息
+ * @param {*} userId 
+ * @returns 
+ */
+export const getUserInfoById = (userId) => {
+  const user = new AV.Query("User");
+  return new Promise((resolve, reject) => {
+    user
+      .get(userId)
+      .then(res => {
+        resolve(res);
+      })
+      .catch(error => {
+        reject(error);
+        message.error(error.rawMessage || "错误");
+      });
+  });
+};
+
+/**
  * 验证用户名
  * @param {*} username
  * @returns
