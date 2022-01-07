@@ -46,6 +46,8 @@ function App() {
     }
   };
 
+  console.log("p :>> ", process.env);
+
   return (
     <div>
       <ConfigProvider locale={zhCN}>
