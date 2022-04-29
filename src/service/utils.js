@@ -1,5 +1,6 @@
 import { message } from "antd";
 import AV from "leancloud-storage";
+import { useEffect, useRef, useState } from "react";
 import {
   nickHeader,
   nickFoot,
@@ -13,6 +14,28 @@ AV.init({
   appKey: "JXUCxIYpDrIF87LVpYlK9egD",
   serverURL: "https://server.lyq168.cn",
 });
+
+/**
+ * 同步useState
+ * @param {*} state 
+ * @returns 
+ */
+export const useCallbackState = (state) => {
+  const cbRef = useRef();
+  const [data, setData] = useState(state);
+
+  useEffect(() => {
+    cbRef.current && cbRef.current(data);
+  }, [data]);
+
+  return [
+    data,
+    function (val, callback) {
+      cbRef.current = callback;
+      setData(val);
+    },
+  ];
+};
 
 /**
  * 随机数
@@ -106,18 +129,18 @@ export const queryRegion = (code = "-1") => {
 
 /**
  * 获取用户信息
- * @param {*} userId 
- * @returns 
+ * @param {*} userId
+ * @returns
  */
 export const getUserInfoById = (userId) => {
   const user = new AV.Query("User");
   return new Promise((resolve, reject) => {
     user
       .get(userId)
-      .then(res => {
+      .then((res) => {
         resolve(res);
       })
-      .catch(error => {
+      .catch((error) => {
         reject(error);
         message.error(error.rawMessage || "错误");
       });

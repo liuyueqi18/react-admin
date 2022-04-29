@@ -26,6 +26,7 @@ import {
   queryRegion,
   randomName,
   randomNum,
+  useCallbackState,
 } from "../../service/utils";
 
 const { Option } = Select;
@@ -43,11 +44,9 @@ function BasicTable() {
     areaList: [],
   });
   const [customerVisible, setCustomerVisible] = useState(false);
-  const [pageParams, setPageParams] = useState({
+  const [queryParams, setQueryParams] = useCallbackState({
     current: 1,
     pageSize: 10,
-  });
-  const [queryParams, setQueryParams] = useState({
     globalQuery: "",
     custName: "",
     custPhone: "",
@@ -162,16 +161,13 @@ function BasicTable() {
   ];
 
   useEffect(() => {
-    getTableList();
+    getTableList(queryParams);
     return () => {
       //
     };
-  }, [pageParams, queryParams]);
+  }, []);
 
-  /**
-   * 关注/取关
-   * @param {*} item
-   */
+  // 关注/取关
   const handlerFollow = (item) => {
     followCustomer(item.id, !item.isFollow).then(() => {
       item.isFollow = !item.isFollow;
@@ -179,8 +175,8 @@ function BasicTable() {
   };
 
   // 更新列表
-  const getTableList = () => {
-    getCustomerListById(RYMUSERID, pageParams, queryParams).then((res) => {
+  const getTableList = (dataParams) => {
+    getCustomerListById(RYMUSERID, dataParams).then((res) => {
       setState({
         ...state,
         list: res[0].map((item, index) => {
@@ -195,16 +191,28 @@ function BasicTable() {
   };
   // 页数/页码
   const pageChange = (current, pageSize) => {
-    setPageParams({
-      current: current,
-      pageSize: pageSize,
-    });
+    setQueryParams(
+      {
+        ...queryParams,
+        current: current,
+        pageSize: pageSize,
+      },
+      (data) => {
+        getTableList(data);
+      }
+    );
   };
   // 搜索
   const pushSearchParams = (values) => {
-    setQueryParams({
-      ...values,
-    });
+    setQueryParams(
+      {
+        ...queryParams,
+        ...values,
+      },
+      (data) => {
+        getTableList(data);
+      }
+    );
   };
   // 创建随机人员10条
   const createdRandom = () => {
@@ -214,7 +222,7 @@ function BasicTable() {
     Promise.all([...new Array(10)].map((i) => getRandomPerson())).then(
       (list) => {
         saveAllCustomer(list).then(() => {
-          getTableList();
+          getTableList(queryParams);
         });
       }
     );
@@ -266,8 +274,8 @@ function BasicTable() {
       okText: "确定",
       cancelText: "取消",
       onOk: () => {
-        delCustomer(row.id).then((res) => {
-          getTableList();
+        delCustomer(row.id).then(() => {
+          getTableList(queryParams);
         });
       },
     });
@@ -367,7 +375,7 @@ function BasicTable() {
         .validateFields()
         .then(() => {
           editCustomer(customerState.rawItem.id, params).then(() => {
-            getTableList();
+            getTableList(queryParams);
             setCustomerModal(false);
           });
         })
@@ -379,7 +387,7 @@ function BasicTable() {
         .validateFields()
         .then(() => {
           setCustomer(params).then(() => {
-            getTableList();
+            getTableList(queryParams);
             setCustomerModal(false);
           });
         })
@@ -403,7 +411,7 @@ function BasicTable() {
         bordered
         scroll={{ x: 2000 }}
         pagination={{
-          current: pageParams.current,
+          current: queryParams.current,
           showTotal: () => `总计: ${state.total} 条`,
           showSizeChanger: true,
           total: state.total,

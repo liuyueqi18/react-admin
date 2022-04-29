@@ -11,11 +11,10 @@ AV.init({
 /**
  * 获取人员列表
  * @param {*} userId
- * @param {*} pageParams
  * @param {*} queryParams
  * @returns
  */
-export function getCustomerListById(userId, pageParams, queryParams) {
+export function getCustomerListById(userId, queryParams) {
   // 只查看自己的人员
   const CustomerUserVO = new AV.Query("Customer");
   CustomerUserVO.equalTo("userId", userId);
@@ -55,8 +54,8 @@ export function getCustomerListById(userId, pageParams, queryParams) {
   );
   const CustomerQuery = AV.Query.and(CustomerQueryV1, CustomerQueryV2);
   const Query = AV.Query.and(CustomerUserVO, CustomerQuery, globalQueryAV);
-  Query.limit(pageParams.pageSize);
-  Query.skip((pageParams.current - 1) * pageParams.pageSize);
+  Query.limit(queryParams.pageSize);
+  Query.skip((queryParams.current - 1) * queryParams.pageSize);
   Query.addDescending("createdAt");
   const listPromise = new Promise((resolve, reject) => {
     Query.find()
