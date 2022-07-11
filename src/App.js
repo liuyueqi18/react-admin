@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     handlerLogin();
     return () => {
-      //
+      // Nothing...
     };
   }, [loaction.pathname]);
   const RYMUSERID = localStorage.getItem("RYMUSERID");
