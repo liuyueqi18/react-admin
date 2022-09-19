@@ -8,7 +8,7 @@
   <a href="https://github.com/remix-run/react-router">
     <img src="https://img.shields.io/badge/react--router--dom-6.0.2-blue.svg" alt="react-route-dom">
   </a>
-  <a href="https://ant.design/components/overview-cn/">
+  <a href="https://github.com/ant-design/ant-design">
     <img src="https://img.shields.io/badge/antd-4.17.1-blue.svg" alt="andt">
   </a>
   
